@@ -1,44 +1,61 @@
-create database college
+CREATE DATABASE college;
 
-use college
+USE college;
 
-create table Student_Data(
-		r_no int,
-		name varchar(50) ,
-		dept varchar(30)
-)
+CREATE TABLE FantasyCreatureZoo (
+    CreatureID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Species VARCHAR(100),
+    Habitat VARCHAR(100),
+    Abilities TEXT,
+    Diet ENUM('Carnivore', 'Herbivore', 'Omnivore', 'Unknown') DEFAULT 'Unknown',
+    DiscoveredDate DATE,
+    IsLegendary BOOLEAN DEFAULT FALSE,
+    LastSeen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
-insert into Student_Data() values(01,"Krish","AI&DS")
-insert into Student_Data() values(02,"Ram","CSE")
-insert into Student_Data() values(03,"Siva","CSE")
+INSERT INTO FantasyCreatureZoo (Name, Species, Habitat, Abilities, Diet, DiscoveredDate, IsLegendary)
+VALUES
+('Fire Dragon', 'Dragon', 'Volcanic Mountains', 'Breathes fire, can fly', 'Carnivore', '2023-01-15', TRUE),
+('Frost Giant', 'Giant', 'Frozen Tundra', 'Superhuman strength, ice manipulation', 'Omnivore', '2023-03-22', TRUE),
+('Phoenix', 'Mythical Bird', 'Mystic Forest', 'Rebirth from ashes, flight', 'Carnivore', '2023-05-30', TRUE),
+('Unicorn', 'Mythical Horse', 'Enchanted Meadow', 'Healing horn, enhanced speed', 'Herbivore', '2023-07-10', TRUE),
+('Goblin', 'Goblin', 'Dark Caves', 'Stealthy, cunning', 'Omnivore', '2023-08-01', FALSE);
 
-select * from Student_Data
+SELECT * FROM FantasyCreatureZoo;
 
-select dept from Student_Data where r_no=01
+SELECT Name, Diet FROM FantasyCreatureZoo WHERE CreatureID = 1;
 
-truncate table Student_Data
+TRUNCATE TABLE FantasyCreatureZoo;
 
-select * from Student_Data
+SELECT * FROM FantasyCreatureZoo;
 
-insert into Student_Data() values(01,"Krish","AI&DS")
-insert into Student_Data() values(02,"Ram","CSE")
-insert into Student_Data() values(03,"Siva","CSE")
+INSERT INTO FantasyCreatureZoo (Name, Species, Habitat, Abilities, Diet, DiscoveredDate, IsLegendary)
+VALUES
+('Fire Dragon', 'Dragon', 'Volcanic Mountains', 'Breathes fire, can fly', 'Carnivore', '2023-01-15', TRUE),
+('Frost Giant', 'Giant', 'Frozen Tundra', 'Superhuman strength, ice manipulation', 'Omnivore', '2023-03-22', TRUE),
+('Phoenix', 'Mythical Bird', 'Mystic Forest', 'Rebirth from ashes, flight', 'Carnivore', '2023-05-30', TRUE),
+('Unicorn', 'Mythical Horse', 'Enchanted Meadow', 'Healing horn, enhanced speed', 'Herbivore', '2023-07-10', TRUE),
+('Goblin', 'Goblin', 'Dark Caves', 'Stealthy, cunning', 'Omnivore', '2023-08-01', FALSE);
 
-select * from Student_Data
+SELECT * FROM FantasyCreatureZoo;
 
-SET SQL_SAFE_UPDATES = 0
-delete from Student_Data where name="Siva"
-SET SQL_SAFE_UPDATES = 1
+SET SQL_SAFE_UPDATES = 0;
 
-SET SQL_SAFE_UPDATES = 0
-update Student_Data set dept="AI&DS" where r_no=02
-SET SQL_SAFE_UPDATES = 1
+DELETE FROM FantasyCreatureZoo WHERE Name = 'Goblin';
 
+SET SQL_SAFE_UPDATES = 1;
 
-select * from Student_Data
+SET SQL_SAFE_UPDATES = 0;
 
-alter table Student_Data rename column r_no to roll_no
+UPDATE FantasyCreatureZoo SET Diet = 'Herbivore' WHERE Name = 'Fire Dragon';
 
-select * from Student_Data
+SET SQL_SAFE_UPDATES = 1;
 
-drop table Student_Data
+SELECT * FROM FantasyCreatureZoo;
+
+ALTER TABLE FantasyCreatureZoo RENAME COLUMN CreatureID TO ID;
+
+SELECT * FROM FantasyCreatureZoo;
+
+DROP TABLE FantasyCreatureZoo;
